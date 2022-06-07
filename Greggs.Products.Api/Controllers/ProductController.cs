@@ -20,12 +20,12 @@ public class ProductController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<Product> Get(int pageStart = 0, int pageSize = 5)
+    public IEnumerable<Product> Get(int pageStart = 0, int pageSize = 5, string currencyCode = "GBP")
     {
         // Use structured logging - perhaps there's a sink behind the ILogger that will allow us to query the data later.
-        _logger.LogDebug("Parameters: {pageStart}, {pageSize}", pageStart, pageSize);
+        _logger.LogDebug("Parameters: {pageStart}, {pageSize} {currencyCode}", pageStart, pageSize, currencyCode);
 
         return _productDataAccess
-            .List(pageStart, pageSize);
+            .List(pageStart, pageSize, currencyCode);
     }
 }

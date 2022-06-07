@@ -26,7 +26,7 @@ namespace Greggs.Products.UnitTests
         {
             // Arrange
             var mockProductDataAccess = new Mock<IDataAccess<Product>>();
-            mockProductDataAccess.Setup(x => x.List(pageStart, pageSize)).Returns(new List<Product>());
+            mockProductDataAccess.Setup(x => x.List(pageStart, pageSize, "GBP")).Returns(new List<Product>());
 
             var controller = new ProductController(new Mock<ILogger<ProductController>>().Object, mockProductDataAccess.Object);
 
@@ -34,7 +34,7 @@ namespace Greggs.Products.UnitTests
             controller.Get(pageStart, pageSize);
 
             // Assert
-            mockProductDataAccess.Verify(x => x.List(pageStart, pageSize), Times.Once());
+            mockProductDataAccess.Verify(x => x.List(pageStart, pageSize, "GBP"), Times.Once());
         }
 
         [Fact]
@@ -43,7 +43,7 @@ namespace Greggs.Products.UnitTests
             // Arrange
             var testReturnProductData = _fixture.CreateMany<Product>().ToList();
             var mockProductDataAccess = new Mock<IDataAccess<Product>>();
-            mockProductDataAccess.Setup(x => x.List(It.IsAny<int>(), It.IsAny<int>())).Returns(testReturnProductData);
+            mockProductDataAccess.Setup(x => x.List(It.IsAny<int>(), It.IsAny<int>(), "GBP")).Returns(testReturnProductData);
 
             var controller = new ProductController(new Mock<ILogger<ProductController>>().Object, mockProductDataAccess.Object);
 

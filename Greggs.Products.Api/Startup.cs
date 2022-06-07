@@ -1,3 +1,4 @@
+using Greggs.Products.Api.Currency;
 using Greggs.Products.Api.DataAccess;
 using Greggs.Products.Api.Models;
 using Microsoft.AspNetCore.Builder;
@@ -13,6 +14,7 @@ public class Startup
     {
         services.AddControllers();
         services.AddScoped<IDataAccess<Product>, ProductAccess>();
+        services.AddScoped<ICurrencyConverter, CurrencyConverter>();
 
         services.AddSwaggerGen();
     }
