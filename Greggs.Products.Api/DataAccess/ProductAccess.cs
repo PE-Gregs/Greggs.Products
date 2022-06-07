@@ -21,6 +21,7 @@ public class ProductAccess : IDataAccess<Product>
         new() { Name = "Coca Cola", PriceInPounds = 1.2m }
     };
 
+    // In practice the signature would be changed to an async Task<IEnumerable<Product>> and callers marked as async and awaiting this call.
     public IEnumerable<Product> List(int? pageStart, int? pageSize)
     {
         var queryable = ProductDatabase.AsQueryable();
